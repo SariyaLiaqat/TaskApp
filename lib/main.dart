@@ -36,12 +36,40 @@ class TaskFlowApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
-        colorSchemeSeed: Colors.blueAccent,
-        brightness: Brightness.light,
-      ),
-      darkTheme: ThemeData(
-        useMaterial3: true,
-        brightness: Brightness.dark,
+        // The core professional palette
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF4F46E5),
+          primary: const Color(0xFF4F46E5),
+          surface: const Color(0xFFF8FAFC), // Ultra light background
+        ),
+        // Setting the default scaffold background
+        scaffoldBackgroundColor: const Color(0xFFF8FAFC),
+        
+        // Global Text Styling
+        textTheme: const TextTheme(
+          headlineMedium: TextStyle(
+            color: Color(0xFF1E293B),
+            fontWeight: FontWeight.w900,
+            letterSpacing: -1,
+          ),
+        ),
+
+        // Cleaning up the Global AppBar Theme
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          centerTitle: false,
+          iconTheme: IconThemeData(color: Color(0xFF1E293B)),
+        ),
+
+        // Styling the Checkbox to match our Tiles
+        checkboxTheme: CheckboxThemeData(
+          shape: const CircleBorder(),
+          fillColor: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.selected)) return const Color(0xFF4F46E5);
+            return Colors.transparent;
+          }),
+        ),
       ),
       home: const HomeScreen(),
     );
